@@ -15,26 +15,39 @@ import com.llpevandro.workshopmongo.services.exception.ObjectNotFoundException;
 public class UsersService {
 
 	@Autowired
-	private UsersRepository repo;	
+	private UsersRepository repo;
 
 	public List<Users> findAll() {
 		return repo.findAll();
 	}
 
 	public Users findById(String id) {
-		Optional<Users> obj = repo.findById(id);		
+		Optional<Users> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Object not found"));
 	}
-	
+
 	public Users insert(Users obj) {
 		return repo.insert(obj);
 	}
-	
+
 	public void delete(String id) {
-		repo.deleteById(id);		
+		repo.deleteById(id);
 	}
-	
+
+	public Users update(Users obj) {
+		Users newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Users newObj, Users obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+		
+	}
+
 	public Users fromDTO(UsersDTO objDto) {
 		return new Users(objDto.getId(), objDto.getEmail(), objDto.getName());
 	}
+
 }
