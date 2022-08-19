@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.llpevandro.workshopmongo.domain.Post;
-import com.llpevandro.workshopmongo.domain.Users;
 import com.llpevandro.workshopmongo.repository.PostRepository;
 import com.llpevandro.workshopmongo.services.exception.ObjectNotFoundException;
 

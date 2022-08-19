@@ -62,8 +62,6 @@ public class Users implements Serializable {
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
